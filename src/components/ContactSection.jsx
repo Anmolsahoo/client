@@ -121,8 +121,8 @@ export default function ContactSection({ initialFormData }) {
               <div>
                 <div className="contact-item-title">Official Project Desk</div>
                 <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                  <a href="mailto:info@calibertechsolutions.com" style={{ color: 'var(--color-cyan-bright)', fontWeight: 600 }}>
-                    info@calibertechsolutions.com
+                  <a href="mailto:info@dksonassociates.com" style={{ color: 'var(--color-cyan-bright)', fontWeight: 600 }}>
+                    info@dksonassociates.com
                   </a>
                 </div>
                 <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>

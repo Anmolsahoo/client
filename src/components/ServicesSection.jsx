@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Building2, 
   Cpu, 
@@ -10,53 +10,67 @@ import {
   ArrowRight,
   ExternalLink,
   Shield,
-  FileCheck
+  FileCheck,
+  Sparkles,
+  Maximize2
 } from 'lucide-react';
 
 export default function ServicesSection({ onSelectServiceForQuote }) {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedServiceModal, setSelectedServiceModal] = useState(null);
+  const [visibleIndices, setVisibleIndices] = useState([0]); // First row visible by default
+  const [previewImage, setPreviewImage] = useState(null);
+  const sectionRef = useRef(null);
 
   const categories = [
     { id: 'all', label: 'All Services' },
     { id: 'detailing', label: 'Steel Detailing' },
     { id: 'connection', label: 'Connection Design' },
     { id: 'bim', label: '3D BIM Modeling' },
-    { id: 'misc', label: 'Misc Metals' },
-    { id: 'cnc', label: 'CNC Deliverables' }
+    { id: 'engineering', label: 'Structural Design' },
+    { id: 'estimation', label: 'MTO Estimation' },
+    { id: 'misc', label: 'Misc Metals' }
   ];
 
   const services = [
     {
       id: 'structural-detailing',
       category: 'detailing',
-      code: 'SRV-01',
+      code: 'SERVICE 01',
+      subCode: 'DET-AISC',
       icon: <Building2 size={26} />,
       title: 'Structural Steel Detailing',
-      description: 'Comprehensive, fabrication-ready shop and erection drawings designed for rapid fabrication and seamless zero-clash field erection.',
+      tagline: 'Comprehensive shop & erection drawings with zero-clash fabrication accuracy',
+      description: 'We deliver comprehensive, fabrication-ready shop and erection drawings designed for rapid CNC fabrication and seamless, clash-free field erection across North America.',
+      image: 'https://content.app-sources.com/s/432484035579470251/uploads/Caliber/3-4254478.png?format=webp',
+      badge: 'Tekla LOD 400 Ready',
       deliverables: [
-        'Anchor Bolt Setting Plans & Grout Layouts',
-        'Erection Mark Diagrams & Section Views',
-        'Individual Beam, Column & Truss Shop Sheets',
-        'Advance Bill of Materials (ABM) for Steel Procurement',
-        'Field Bolt Summaries & Shipping Mark Lists'
+        'Anchor Bolt Setting Plans & Grout Elevation Layouts',
+        'Shop Beams, Heavy Columns & Complex Truss Sheets',
+        'Advance Bill of Materials (ABM) for Fast Mill Ordering',
+        'Field Bolt Summaries & Erection Mark Diagrams',
+        'Part Detail Sheets with Dimensioned CNC Hole Patterns'
       ],
       standards: 'AISC 360, AISC 303, NISD Class 1 QPP',
-      software: 'Tekla Structures, SDS/2'
+      software: 'Tekla Structures v2024, SDS/2'
     },
     {
       id: 'connection-design',
       category: 'connection',
-      code: 'SRV-02',
+      code: 'SERVICE 02',
+      subCode: 'ENG-PE49',
       icon: <Cpu size={26} />,
       title: 'PE Stamped Connection Design',
-      description: 'Licensed professional engineering calculations for complex moment, shear, bracing, and truss connections across 49 US States.',
+      tagline: 'Licensed engineering calculations for complex moment, shear & seismic connections',
+      description: 'Professional engineering connection design packages stamped by licensed structural engineers across 49 US States. Certified for high-seismic and extreme lateral wind loading.',
+      image: 'https://content.app-sources.com/s/432484035579470251/uploads/Caliber/4-4254478.png?format=webp',
+      badge: 'PE Stamped in 49 States',
       deliverables: [
-        'PE Stamped & Sealed Calculation Packages',
-        'Moment Connection Design (WUF-W, RBS Dogbone, Bolted Flange)',
-        'Seismic & Wind Lateral Load Path Verification',
-        'Heavy Truss Nodes & Chevron Bracing Gussets',
-        'Base Plate & High-Capacity Anchor Rod Calculations'
+        'Moment Connections (WUF-W, RBS Dogbone, Bolted Flange)',
+        'Heavy Chevron & Diagonal Bracing Gusset Plate Design',
+        'Column Base Plates & High-Capacity Anchor Rod Packages',
+        'Full Structural Calculation Books with PE Engineering Seal',
+        'Non-Standard Custom Node Finite Element Verification'
       ],
       standards: 'AISC 358 Prequalified, ASCE 7-22, IBC 2024',
       software: 'IDEA StatiCa, RAM Connection, DESCON'
@@ -64,70 +78,86 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
     {
       id: 'bim-modeling',
       category: 'bim',
-      code: 'SRV-03',
+      code: 'SERVICE 03',
+      subCode: 'BIM-LOD500',
       icon: <Box size={26} />,
       title: '3D BIM Modeling & Clash Coordination',
-      description: 'High-fidelity LOD 400 & LOD 500 Building Information Models synchronized with architectural, MEP, and structural engineering models.',
+      tagline: 'High-fidelity LOD 400 Building Information Models synchronized across all trades',
+      description: 'Intelligent, constructible 3D BIM models coordinated with architectural, MEP, and civil disciplines to eliminate costly field clashes before steel ever touches the fabrication shop floor.',
+      image: 'https://3dpointshot.com/img/service/bim-modelling.png',
+      badge: 'Trimble Connect Live Sync',
       deliverables: [
-        'Fully Detailed LOD 400 Construction Models',
-        'Navisworks Clash Detection & RFI Resolution',
+        'Fully Detailed LOD 400 & LOD 500 Constructible Models',
+        'Navisworks Automated Clash Detection & Matrix Reports',
         'Trimble Connect Cloud Collaboration Live Sync',
-        'IFC & 3D DWF File Exports for General Contractors',
-        '4D Construction Sequencing & Logistics Simulation'
+        'IFC, 3D DWG & 3D PDF Model Deliverables for GCs',
+        '4D Construction Sequencing & Phased Erection Simulation'
       ],
       standards: 'BIMForum LOD Spec, ISO 19650',
       software: 'Tekla Structures, Autodesk Revit, Navisworks'
     },
     {
+      id: 'structural-design',
+      category: 'engineering',
+      code: 'SERVICE 04',
+      subCode: 'DES-AISC',
+      icon: <Layers size={26} />,
+      title: 'Structural Steel Design & Engineering',
+      tagline: 'Code-compliant structural engineering solutions from concept framing to foundation load paths',
+      description: 'Complete structural steel engineering and framing design for commercial, industrial, and institutional facilities. Optimized member sizing for maximum steel weight economy.',
+      image: 'https://content.app-sources.com/s/432484035579470251/uploads/Caliber/5-4254478.png?format=webp',
+      badge: 'AISC 360 & AWS D1.1',
+      deliverables: [
+        'Gravity & Lateral Load Path Engineering Calculations',
+        'Optimal Wide-Flange & HSS Structural Member Sizing',
+        'Foundation Reaction Schedules & Embed Coordination',
+        'Value-Engineered Steel Weight Reduction Analysis',
+        'Peer Review & Value Engineering Support'
+      ],
+      standards: 'AISC 360-16, ASCE 7, AWS D1.1 Code',
+      software: 'STAAD.Pro, ETABS, SAP2000'
+    },
+    {
+      id: 'mto-estimation',
+      category: 'estimation',
+      code: 'SERVICE 05',
+      subCode: 'EST-MTO',
+      icon: <FileCode size={26} />,
+      title: 'Estimation & Material Take-Off (MTO)',
+      tagline: 'Rapid and accurate structural tonnage extraction for competitive fabrication bidding',
+      description: 'Precision structural steel quantity take-offs, advance bill of materials (ABM), and steel tonnage estimates to help steel fabricators prepare competitive, winning project bids.',
+      image: 'https://content.app-sources.com/s/432484035579470251/uploads/Caliber/1-4254477.png?format=webp',
+      badge: '24-48h Fast Turnaround',
+      deliverables: [
+        'Comprehensive Structural Steel Tonnage Breakdown',
+        'Advance Bill of Materials (ABM) for Mill Lead Time',
+        'Field Bolt Counts, Anchor Rods & Hardware Lists',
+        'Surface Area Calculations for Paint & Fireproofing',
+        'Detailed Summary Spreadsheets in Excel & Kiss Format'
+      ],
+      standards: 'AISC Estimating Guidelines, NISD Standards',
+      software: 'FabTrol, STRUMIS, Bluebeam Revu'
+    },
+    {
       id: 'misc-metals',
       category: 'misc',
-      code: 'SRV-04',
-      icon: <Layers size={26} />,
+      code: 'SERVICE 06',
+      subCode: 'MISC-METALS',
+      icon: <Grid size={26} />,
       title: 'Miscellaneous Metals Detailing',
-      description: 'Precision detailing for architectural and industrial secondary steel, designed strictly to OSHA, ADA, and local building codes.',
+      tagline: 'Secondary architectural and industrial steel detailed strictly to OSHA and ADA codes',
+      description: 'Precision detailing for commercial stairs, railings, catwalks, ladders, and canopies. Engineered for clean architectural aesthetics and seamless jobsite assembly.',
+      image: 'https://content.app-sources.com/s/432484035579470251/uploads/Caliber/Cowell-Jaguar-Landrover-Isometri-3286297.webp?format=webp',
+      badge: 'OSHA & ADA Compliant',
       deliverables: [
-        'Commercial Monumental & Pan Stairs with Stringers',
-        'OSHA & Industrial Multi-Flight Egress Stairs',
-        'ADA Compliant Railings, Guardrails & Balustrades',
-        'Roof Access Ladders with Safety Cages & Catwalks',
-        'Overhead Canopy Steel, Trench Covers & Grating'
+        'Commercial Pan, Monolithic & Monumental Stairs',
+        'OSHA Egress Multi-Tier Stairs with Safety Landings',
+        'ADA Compliant Railings, Guardrails & Glass Balustrades',
+        'Roof Access Ladders with Safety Cages & Grating',
+        'Canopy Steel, Overhead Frames & Dunnage Detailing'
       ],
       standards: 'OSHA 1910.28, NAAMM AMP 510, ADA Standards',
       software: 'Tekla Structures, AutoCAD'
-    },
-    {
-      id: 'cnc-deliverables',
-      category: 'cnc',
-      code: 'SRV-05',
-      icon: <FileCode size={26} />,
-      title: 'CNC, DXF & Automated Shop Files',
-      description: 'Digital data files tailored directly for your shop automated machinery: CNC beam drill lines, robotic welders, and plate plasma cutters.',
-      deliverables: [
-        'DSTV (.nc1) Files for Peddinghaus, Ficep, Voortman',
-        'DXF Plate Files Cleaned for Plasma & Laser Cutters',
-        'FabTrol / Kiss (.kss) Export for ERP Tracking',
-        'FabSuite, STRUMIS, and Advance Steel Integration',
-        'Electronic Drawing E-Sheets (PDF with Embedded Metadata)'
-      ],
-      standards: 'DSTV Standard, AISC Digital Data Transfer',
-      software: 'Tekla CNC Post-Processors, FabTrol, STRUMIS'
-    },
-    {
-      id: 'precast-rebar',
-      category: 'detailing',
-      code: 'SRV-06',
-      icon: <Grid size={26} />,
-      title: 'Precast Concrete & Rebar Detailing',
-      description: 'Detailed concrete rebar placement drawings and precast structural elements with comprehensive bar bending schedules.',
-      deliverables: [
-        'Reinforcing Steel Bar Bending Schedules (BBS)',
-        'Foundation & Slab Rebar Placement Drawings',
-        'Precast Architectural Wall Panels & Spandrels',
-        'Structural Embed Plates & Connection Hardware',
-        'Tilt-Up Concrete Wall Panel Shop Drawings'
-      ],
-      standards: 'ACI 318, CRSI Manual of Standard Practice',
-      software: 'Tekla Precast, AutoCAD Rebar'
     }
   ];
 
@@ -135,25 +165,76 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
     ? services 
     : services.filter(s => s.category === activeCategory);
 
+  // IntersectionObserver to trigger opposite-side slide-in as user scrolls to each row
+  useEffect(() => {
+    const handleScrollObserve = () => {
+      const rows = document.querySelectorAll('[data-service-row="true"]');
+      if (!rows || rows.length === 0) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const idx = parseInt(entry.target.getAttribute('data-service-idx'), 10);
+              if (!isNaN(idx)) {
+                setVisibleIndices((prev) => (prev.includes(idx) ? prev : [...prev, idx]));
+                observer.unobserve(entry.target);
+              }
+            }
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: '0px 0px -40px 0px'
+        }
+      );
+
+      rows.forEach((row) => {
+        observer.observe(row);
+        // Immediate check if element is already in viewport on load or jump
+        const rect = row.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9 && rect.bottom > 0) {
+          const idx = parseInt(row.getAttribute('data-service-idx'), 10);
+          if (!isNaN(idx)) {
+            setVisibleIndices((prev) => (prev.includes(idx) ? prev : [...prev, idx]));
+          }
+        }
+      });
+
+      return () => observer.disconnect();
+    };
+
+    const cleanup = handleScrollObserve();
+    return () => cleanup && cleanup();
+  }, [activeCategory, filteredServices.length]);
+
   return (
-    <section id="services" className="section" style={{ background: 'var(--bg-secondary)' }}>
-      <div className="container">
+    <section id="services" ref={sectionRef} className="section services-master-section">
+      {/* Background Ambience */}
+      <div className="ambient-glow ambient-cyan" style={{ top: '10%', right: '-5%', width: '500px', height: '500px', opacity: 0.08 }}></div>
+      <div className="ambient-glow ambient-indigo" style={{ top: '55%', left: '-5%', width: '550px', height: '550px', opacity: 0.08 }}></div>
+
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         
-        {/* Section Header */}
-        <div className="section-title-wrap">
-          <div className="section-badge">
-            <Shield size={14} />
-            <span>Comprehensive Engineering Portfolio</span>
+        {/* Section Header with Bottom-to-Top entrance animation */}
+        <div className="section-title-wrap dkson-service-header">
+          <div className="dkson-sub-badge">
+            <span className="pulse-dot"></span>
+            <span>WHAT WE OFFER</span>
           </div>
-          <h2 className="section-title">
-            End-to-End <span className="text-gradient">Steel Detailing & BIM</span> Capabilities
+
+          <h2 className="section-title dkson-main-heading">
+            Our <span className="text-gradient">Services</span>
           </h2>
-          <p className="section-subtitle">
-            From initial design model import to automated CNC fabrication files and PE-stamped connection calculations, we provide seamless engineering support for steel fabricators and general contractors.
+
+          <p className="section-subtitle dkson-subtitle-text">
+            Comprehensive structural steel solutions from concept to fabrication. Every drawing and connection engineered for rapid fabrication, zero field rework, and 100% code compliance.
           </p>
+
+          <div className="dkson-header-accent-line"></div>
         </div>
 
-        {/* Categories Tab Bar */}
+        {/* Category Filter Tabs */}
         <div className="services-tabs-wrap">
           {categories.map(cat => (
             <button
@@ -166,53 +247,134 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
           ))}
         </div>
 
-        {/* Services Grid */}
-        <div className="services-grid">
-          {filteredServices.map((service) => (
-            <div key={service.id} className="service-card">
-              <div className="service-card-top">
-                <div className="service-icon-box">
-                  {service.icon}
+        {/* ========================================================
+            CALIBER TECH OPPOSITE-SIDE DUAL-CARD SCROLL SHOWCASE
+            Row h has 2 Cards:
+            - Left Card slides in from LEFT (translateX(-110px))
+            - Right Card slides in from RIGHT (translateX(+110px))
+            - Rows alternate sides:
+              Even (0, 2, 4): Left = Image Card, Right = Detail Card
+              Odd (1, 3, 5): Left = Detail Card, Right = Image Card
+            ======================================================== */}
+        <div className="services-dual-showcase-list">
+          {filteredServices.map((service, index) => {
+            const isVisible = visibleIndices.includes(index);
+            const isEven = index % 2 === 0;
+
+            // Card A: Image Showcase Card
+            const renderImageCard = () => (
+              <div className="service-dual-img-card group">
+                <div className="service-dual-img-inner">
+                  <img 
+                    src={service.image} 
+                    alt={`${service.title} - Dkson Associates structural steel detailing`}
+                    loading="lazy"
+                    decoding="async"
+                    className="service-dual-img"
+                  />
+                  <div className="service-dual-img-overlay"></div>
+                  
+                  {/* Floating Badges */}
+                  <div className="service-dual-top-badge">
+                    <span className="pulse-dot"></span>
+                    <span>{service.badge}</span>
+                  </div>
+
+                  <div className="service-dual-img-footer">
+                    <span className="service-dual-tool-tag">{service.software}</span>
+                    <button 
+                      className="service-dual-expand-btn"
+                      title="Inspect full visual"
+                      onClick={() => setPreviewImage({ url: service.image, title: service.title })}
+                    >
+                      <Maximize2 size={16} />
+                    </button>
+                  </div>
                 </div>
-                <span className="service-code">{service.code}</span>
               </div>
+            );
 
-              <h3 className="service-card-title">{service.title}</h3>
-              <p className="service-card-desc">{service.description}</p>
-
-              {/* Specs / Deliverables Preview */}
-              <ul className="service-specs-list">
-                {service.deliverables.slice(0, 3).map((item, idx) => (
-                  <li key={idx} className="service-spec-item">
-                    <Check size={16} className="service-spec-dot" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Card Footer */}
-              <div className="service-card-footer">
-                <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                  <strong>Tool:</strong> {service.software}
+            // Card B: Rich Engineering Feature Card
+            const renderDetailCard = () => (
+              <div className="service-dual-detail-card">
+                {/* Top Row: Service Number and Icon */}
+                <div className="service-dual-detail-top">
+                  <div className="service-dual-icon-wrap">
+                    {service.icon}
+                  </div>
+                  <div className="service-dual-code-pill">
+                    <span className="service-dual-main-code">{service.code}</span>
+                    <span className="service-dual-sub-code">{service.subCode}</span>
+                  </div>
                 </div>
-                <button 
-                  className="service-learn-more"
-                  onClick={() => setSelectedServiceModal(service)}
-                >
-                  <span>Specs & Scope</span>
-                  <ArrowRight size={14} />
-                </button>
+
+                <h3 className="service-dual-title">{service.title}</h3>
+                <p className="service-dual-tagline">{service.tagline}</p>
+                <p className="service-dual-desc">{service.description}</p>
+
+                {/* 2-Column Key Deliverables with Checkmarks */}
+                <div className="service-dual-features-grid">
+                  {service.deliverables.slice(0, 4).map((d, dIdx) => (
+                    <div key={dIdx} className="service-dual-feature-item">
+                      <div className="service-dual-check-icon">
+                        <Check size={14} />
+                      </div>
+                      <span>{d}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Card Action Row */}
+                <div className="service-dual-action-row">
+                  <button 
+                    className="btn-primary service-dual-quote-btn"
+                    onClick={() => {
+                      if (onSelectServiceForQuote) onSelectServiceForQuote(service.title);
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  >
+                    <span>Request Detailing Quote</span>
+                    <ArrowRight size={16} />
+                  </button>
+
+                  <button 
+                    className="btn-outline service-dual-scope-btn"
+                    onClick={() => setSelectedServiceModal(service)}
+                  >
+                    <span>View Full Scope</span>
+                    <ExternalLink size={14} />
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+
+            return (
+              <div 
+                key={service.id}
+                data-service-row="true"
+                data-service-idx={index}
+                className="service-paired-row"
+              >
+                {/* LEFT CARD: Slides in from the LEFT */}
+                <div className={`service-sliding-card card-comes-from-left ${isVisible ? 'card-arrived' : ''}`}>
+                  {isEven ? renderImageCard() : renderDetailCard()}
+                </div>
+
+                {/* RIGHT CARD: Slides in from the RIGHT */}
+                <div className={`service-sliding-card card-comes-from-right ${isVisible ? 'card-arrived' : ''}`}>
+                  {isEven ? renderDetailCard() : renderImageCard()}
+                </div>
+              </div>
+            );
+          })}
         </div>
 
       </div>
 
-      {/* Modal for Service Deep Dive */}
+      {/* Deep-Dive Modal for Service Specifications */}
       {selectedServiceModal && (
         <div className="modal-overlay" onClick={() => setSelectedServiceModal(null)}>
-          <div className="modal-card" onClick={e => e.stopPropagation()}>
+          <div className="modal-card dkson-modal-card" onClick={e => e.stopPropagation()}>
             <button className="modal-close-btn" onClick={() => setSelectedServiceModal(null)}>
               ✕
             </button>
@@ -222,7 +384,7 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
                 {selectedServiceModal.icon}
               </div>
               <div>
-                <span className="badge-tag">{selectedServiceModal.code}</span>
+                <span className="badge-tag">{selectedServiceModal.code} // {selectedServiceModal.subCode}</span>
                 <h3 style={{ fontSize: '1.5rem', color: '#fff', marginTop: '0.2rem' }}>
                   {selectedServiceModal.title}
                 </h3>
@@ -233,13 +395,24 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
               {selectedServiceModal.description}
             </p>
 
-            <h4 style={{ fontSize: '1.05rem', color: 'var(--color-cyan-bright)', marginBottom: '0.75rem' }}>
-              Standard Deliverables Package:
+            <h4 style={{ fontSize: '1.05rem', color: 'var(--color-cyan-bright)', marginBottom: '0.75rem', fontWeight: 600 }}>
+              Complete Engineering Deliverables Package:
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.75rem' }}>
               {selectedServiceModal.deliverables.map((d, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#cbd5e1', fontSize: '0.9rem' }}>
-                  <Check size={16} style={{ color: 'var(--color-cyan-bright)' }} />
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', color: '#cbd5e1', fontSize: '0.92rem' }}>
+                  <div style={{ 
+                    width: '20px', 
+                    height: '20px', 
+                    borderRadius: '50%', 
+                    background: 'rgba(6, 182, 212, 0.2)', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    <Check size={13} style={{ color: 'var(--color-cyan-bright)' }} />
+                  </div>
                   <span>{d}</span>
                 </div>
               ))}
@@ -250,18 +423,18 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
               gridTemplateColumns: '1fr 1fr', 
               gap: '1rem', 
               padding: '1.25rem', 
-              background: 'rgba(15, 23, 42, 0.7)', 
+              background: 'rgba(15, 23, 42, 0.8)', 
               borderRadius: 'var(--radius-md)', 
               marginBottom: '2rem',
-              border: '1px solid rgba(6, 182, 212, 0.2)'
+              border: '1px solid rgba(6, 182, 212, 0.25)'
             }}>
               <div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Governing Codes</div>
-                <div style={{ fontSize: '0.9rem', color: '#fff', fontWeight: 600 }}>{selectedServiceModal.standards}</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Governing Codes</div>
+                <div style={{ fontSize: '0.9rem', color: '#fff', fontWeight: 600, marginTop: '0.2rem' }}>{selectedServiceModal.standards}</div>
               </div>
               <div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Software Platform</div>
-                <div style={{ fontSize: '0.9rem', color: '#fff', fontWeight: 600 }}>{selectedServiceModal.software}</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Primary Software Engine</div>
+                <div style={{ fontSize: '0.9rem', color: '#fff', fontWeight: 600, marginTop: '0.2rem' }}>{selectedServiceModal.software}</div>
               </div>
             </div>
 
@@ -275,7 +448,7 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                Inquire About This Service
+                Request Detailing Quote
               </button>
               <button 
                 className="btn-outline" 
@@ -285,6 +458,21 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
               </button>
             </div>
 
+          </div>
+        </div>
+      )}
+
+      {/* Lightbox Modal for Full Image Inspection */}
+      {previewImage && (
+        <div className="modal-overlay" onClick={() => setPreviewImage(null)}>
+          <div className="modal-card dkson-img-modal" onClick={e => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={() => setPreviewImage(null)}>✕</button>
+            <h3 style={{ color: '#fff', marginBottom: '1rem', fontSize: '1.25rem' }}>{previewImage.title}</h3>
+            <img 
+              src={previewImage.url} 
+              alt={previewImage.title}
+              style={{ width: '100%', maxHeight: '70vh', objectFit: 'contain', borderRadius: 'var(--radius-lg)' }} 
+            />
           </div>
         </div>
       )}

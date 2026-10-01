@@ -111,7 +111,7 @@ export default function App() {
           <InteractiveModelViewer />
         </div>
 
-        {/* The Caliber Advantage & Side-by-Side Comparison */}
+        {/* The Dkson Associates Advantage & Side-by-Side Comparison */}
         <div className="scroll-reveal">
           <WhyChooseUs onOpenQuoteModal={handleOpenQuoteModal} />
         </div>

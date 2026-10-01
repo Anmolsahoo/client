@@ -28,15 +28,15 @@ export default function Footer() {
                 <Building2 size={22} />
               </div>
               <div>
-                <div style={{ fontWeight: 800, fontSize: '1.25rem', color: '#fff' }}>CALIBER TECH</div>
+                <div style={{ fontWeight: 800, fontSize: '1.25rem', color: '#fff' }}>DKSON ASSOCIATES</div>
                 <div style={{ fontSize: '0.65rem', color: 'var(--color-cyan-bright)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                  STRUCTURAL SOLUTIONS
+                  STRUCTURAL & BIM SOLUTIONS
                 </div>
               </div>
             </div>
 
             <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: '1.7', marginBottom: '1.5rem' }}>
-              Caliber Tech Solutions is a world-class structural steel engineering and detailing partner providing fabrication-ready shop drawings, PE-stamped connection designs, and LOD 400 Tekla BIM modeling across North America.
+              Dkson Associates (Dksonassociates) is a world-class structural steel engineering and detailing partner providing fabrication-ready shop drawings, PE-stamped connection designs, and LOD 400 Tekla BIM modeling across North America.
             </p>
 
             <div style={{ display: 'flex', gap: '0.75rem' }}>
@@ -52,7 +52,7 @@ export default function Footer() {
             <ul className="footer-links-list">
               <li><a href="#services" className="footer-link">Steel Detailing Services</a></li>
               <li><a href="#bim-viewer" className="footer-link">Interactive 3D BIM Viewer</a></li>
-              <li><a href="#why-us" className="footer-link">The Caliber Advantage</a></li>
+              <li><a href="#why-us" className="footer-link">The Dkson Advantage</a></li>
               <li><a href="#projects" className="footer-link">Project Portfolio</a></li>
               <li><a href="#estimator" className="footer-link">Detailing Cost Estimator</a></li>
               <li><a href="#faq" className="footer-link">Frequently Asked Questions</a></li>
@@ -99,8 +99,8 @@ export default function Footer() {
               </li>
               <li style={{ display: 'flex', gap: '0.6rem', color: '#cbd5e1', fontSize: '0.88rem' }}>
                 <Mail size={18} style={{ color: 'var(--color-cyan-bright)', flexShrink: 0, marginTop: '2px' }} />
-                <a href="mailto:info@calibertechsolutions.com" style={{ color: 'var(--color-cyan-bright)' }}>
-                  info@calibertechsolutions.com
+                <a href="mailto:info@dksonassociates.com" style={{ color: 'var(--color-cyan-bright)' }}>
+                  info@dksonassociates.com
                 </a>
               </li>
             </ul>
@@ -111,7 +111,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="footer-bottom-bar">
           <div>
-            © {new Date().getFullYear()} Caliber Tech Solutions. All rights reserved. Structural Steel Detailing & BIM Modeling.
+            © {new Date().getFullYear()} Dkson Associates. All rights reserved. Structural Steel Detailing & BIM Modeling.
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
             <span>Privacy Policy</span>

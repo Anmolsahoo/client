@@ -16,37 +16,37 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
     {
       metric: 'RFI & Revision Turnaround',
       inHouse: '3 - 5 business days (standard working hours only)',
-      caliber: '12 - 24 hours (overnight time-zone delivery advantage)',
+      dkson: '12 - 24 hours (overnight time-zone delivery advantage)',
       highlight: true
     },
     {
       metric: 'Detailing & Engineering Cost',
       inHouse: 'High overhead, fixed salaries, benefits & downtime cost',
-      caliber: '40% - 50% cost savings with flexible per-ton or hourly billing',
+      dkson: '40% - 50% cost savings with flexible per-ton or hourly billing',
       highlight: true
     },
     {
       metric: 'PE Stamping Across US States',
       inHouse: 'Limited to 1 or 2 local state licenses',
-      caliber: 'Licensed Professional Engineers in 49 of 50 US States',
+      dkson: 'Licensed Professional Engineers in 49 of 50 US States',
       highlight: true
     },
     {
       metric: 'Software Licenses & Hardware Overhead',
       inHouse: '$15k - $25k annually per Tekla seat plus workstation depreciation',
-      caliber: 'Zero software or hardware capital expense for your firm',
+      dkson: 'Zero software or hardware capital expense for your firm',
       highlight: false
     },
     {
       metric: 'Quality Assurance Process',
       inHouse: 'Single checker review (often rushed under deadlines)',
-      caliber: '3-tier QA gateway: Model Auditor + Senior Checker + Chief Engineer',
+      dkson: '3-tier QA gateway: Model Auditor + Senior Checker + Chief Engineer',
       highlight: true
     },
     {
       metric: 'Surge Capacity Scalability',
       inHouse: 'Struggles with simultaneous multi-thousand-ton jobs',
-      caliber: 'Instant squad scaling from 2 to 25+ dedicated detailers on demand',
+      dkson: 'Instant squad scaling from 2 to 25+ dedicated detailers on demand',
       highlight: true
     }
   ];
@@ -82,10 +82,10 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
         <div className="section-title-wrap">
           <div className="section-badge">
             <Award size={14} />
-            <span>The Caliber Advantage</span>
+            <span>The Dkson Advantage</span>
           </div>
           <h2 className="section-title">
-            Why Leading Steel Fabricators <span className="text-gradient">Choose Caliber Tech</span>
+            Why Leading Steel Fabricators <span className="text-gradient">Choose Dkson Associates</span>
           </h2>
           <p className="section-subtitle">
             We solve the structural steel industry’s biggest bottlenecks: drafting backlogs, expensive PE connection stamping, and costly field fit-up errors.
@@ -158,8 +158,8 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
             </ul>
           </div>
 
-          {/* Caliber Tech Advantage */}
-          <div className="comparison-card caliber">
+          {/* Dkson Associates Advantage */}
+          <div className="comparison-card dkson">
             <div className="comparison-header">
               <div style={{
                 width: '38px',
@@ -175,7 +175,7 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
                 <Check size={20} />
               </div>
               <div>
-                <h3 style={{ fontSize: '1.25rem', color: '#ffffff' }}>The Caliber Tech Solutions Model</h3>
+                <h3 style={{ fontSize: '1.25rem', color: '#ffffff' }}>The Dkson Associates Model</h3>
                 <div style={{ fontSize: '0.8rem', color: 'var(--color-cyan-bright)', fontWeight: 600 }}>US Project Management + Global Velocity</div>
               </div>
             </div>
@@ -186,7 +186,7 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
                   <Check size={18} style={{ color: 'var(--color-cyan-bright)', flexShrink: 0, marginTop: '3px' }} />
                   <div>
                     <strong style={{ color: '#ffffff', display: 'block', fontSize: '0.88rem' }}>{item.metric}</strong>
-                    <span style={{ color: item.highlight ? '#67e8f9' : '#cbd5e1' }}>{item.caliber}</span>
+                    <span style={{ color: item.highlight ? '#67e8f9' : '#cbd5e1' }}>{item.dkson}</span>
                   </div>
                 </li>
               ))}
@@ -198,7 +198,7 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
                 style={{ width: '100%' }}
                 onClick={() => onOpenQuoteModal ? onOpenQuoteModal() : document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                <span>Partner With Caliber Tech</span>
+                <span>Partner With Dkson Associates</span>
                 <ArrowRight size={16} />
               </button>
             </div>

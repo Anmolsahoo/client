@@ -6,7 +6,7 @@ export default function WhatsAppWidget() {
   const [message, setMessage] = useState('');
   const [tooltipVisible, setTooltipVisible] = useState(true);
 
-  // Caliber Tech Solutions WhatsApp support line (+91 9871177166 / +1 760 588 2207)
+  // Dkson Associates WhatsApp support line (+91 9871177166 / +1 760 588 2207)
   const whatsappNumber = '919871177166';
 
   const quickPrompts = [
@@ -17,7 +17,7 @@ export default function WhatsAppWidget() {
   ];
 
   const handleSend = (textToSend) => {
-    const text = textToSend || message || 'Hello Caliber Tech Solutions, I would like to inquire about your structural steel detailing and BIM services.';
+    const text = textToSend || message || 'Hello Dkson Associates, I would like to inquire about your structural steel detailing and BIM services.';
     const encoded = encodeURIComponent(text);
     const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encoded}`;
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -33,11 +33,11 @@ export default function WhatsAppWidget() {
           <div className="whatsapp-chat-header">
             <div className="whatsapp-avatar-wrap">
               <div className="whatsapp-avatar">
-                <span>CTS</span>
+                <span>DK</span>
                 <span className="whatsapp-status-dot"></span>
               </div>
               <div>
-                <div className="whatsapp-agent-name">Caliber Tech Solutions</div>
+                <div className="whatsapp-agent-name">Dkson Associates</div>
                 <div className="whatsapp-agent-role">Structural Detailing Desk • Online</div>
               </div>
             </div>
@@ -53,7 +53,7 @@ export default function WhatsAppWidget() {
           {/* Chat Body */}
           <div className="whatsapp-chat-body">
             <div className="whatsapp-bubble">
-              Hello! 👋 Welcome to <strong>Caliber Tech Solutions</strong>. 
+              Hello! 👋 Welcome to <strong>Dkson Associates</strong> (Dksonassociates). 
               Looking for fast-track shop drawings, PE connection stamping, or Tekla 3D BIM modeling?
             </div>
             <div style={{ fontSize: '0.74rem', color: '#94a3b8', margin: '0.2rem 0' }}>

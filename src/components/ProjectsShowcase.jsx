@@ -144,7 +144,7 @@ export default function ProjectsShowcase({ onOpenQuoteModal }) {
             Featured <span className="text-gradient">Structural Steel Projects</span>
           </h2>
           <p className="section-subtitle">
-            From high-rise towers to sprawling industrial fulfillment centers and mission-critical data infrastructure, explore projects detailed and stamped by Caliber Tech Solutions.
+            From high-rise towers to sprawling industrial fulfillment centers and mission-critical data infrastructure, explore projects detailed and stamped by Dkson Associates.
           </p>
         </div>
 
@@ -166,7 +166,7 @@ export default function ProjectsShowcase({ onOpenQuoteModal }) {
           {filtered.map(proj => (
             <div key={proj.id} className="project-card">
               <div className="project-img-wrap">
-                <img src={proj.image} alt={proj.title} className="project-img" loading="lazy" />
+                <img src={proj.image} alt={proj.title} className="project-img" loading="lazy" decoding="async" />
                 <span className="project-category-tag">
                   {proj.category.toUpperCase()}
                 </span>

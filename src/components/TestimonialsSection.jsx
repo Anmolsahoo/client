@@ -9,7 +9,7 @@ export default function TestimonialsSection() {
       company: 'Midwest Structural Steel Fabricators (Chicago, IL)',
       project: '3,800 Ton Multi-Story Distribution Hub',
       stars: 5,
-      quote: 'Caliber Tech Solutions delivered over 2,500 fabrication sheets 10 days ahead of our crane mobilization date. When our erectors hung the steel in the field, there was not a single hole misaligned. Their overnight RFI response time is unmatched in this industry.'
+      quote: 'Dkson Associates delivered over 2,500 fabrication sheets 10 days ahead of our crane mobilization date. When our erectors hung the steel in the field, there was not a single hole misaligned. Their overnight RFI response time is unmatched in this industry.'
     },
     {
       name: 'David Reynolds, PE, SE',
@@ -51,7 +51,7 @@ export default function TestimonialsSection() {
             Trusted By Premier <span className="text-gradient">Steel Fabricators & EPC Firms</span>
           </h2>
           <p className="section-subtitle">
-            See how Caliber Tech Solutions keeps fabricators ahead of schedule, under budget, and completely free of field erection conflicts.
+            See how Dkson Associates keeps fabricators ahead of schedule, under budget, and completely free of field erection conflicts.
           </p>
         </div>
 

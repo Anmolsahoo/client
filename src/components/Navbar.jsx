@@ -33,7 +33,7 @@ export default function Navbar({ onOpenQuoteModal }) {
   const navLinks = [
     { label: 'Services', href: '#services' },
     { label: '3D BIM Viewer', href: '#bim-viewer' },
-    { label: 'Why Caliber', href: '#why-us' },
+    { label: 'Why Dkson', href: '#why-us' },
     { label: 'Projects', href: '#projects' },
     { label: 'Estimator', href: '#estimator' },
     { label: 'FAQ', href: '#faq' },
@@ -64,7 +64,7 @@ export default function Navbar({ onOpenQuoteModal }) {
             <span className="badge-tag">AISC & NISD Detailing Partner</span>
             <div className="top-bar-item">
               <MapPin size={14} style={{ color: 'var(--color-cyan-bright)' }} />
-              <span>Overland Park, KS & Global Engineering Center</span>
+              <span>Overland Park, KS & Global Engineering Squads</span>
             </div>
             <div className="top-bar-item">
               <ShieldCheck size={14} style={{ color: 'var(--color-cyan-bright)' }} />
@@ -76,9 +76,9 @@ export default function Navbar({ onOpenQuoteModal }) {
               <Phone size={14} style={{ color: 'var(--color-cyan-bright)' }} />
               <span>US: +1 (760) 588-2207</span>
             </a>
-            <a href="mailto:info@calibertechsolutions.com" className="top-bar-item">
+            <a href="mailto:info@dksonassociates.com" className="top-bar-item">
               <Mail size={14} style={{ color: 'var(--color-cyan-bright)' }} />
-              <span>info@calibertechsolutions.com</span>
+              <span>info@dksonassociates.com</span>
             </a>
           </div>
         </div>
@@ -94,8 +94,8 @@ export default function Navbar({ onOpenQuoteModal }) {
               <Building2 size={22} />
             </div>
             <div className="brand-text-block">
-              <div className="brand-name">CALIBER TECH</div>
-              <div className="brand-tagline">STRUCTURAL SOLUTIONS</div>
+              <div className="brand-name">DKSON ASSOCIATES</div>
+              <div className="brand-tagline">STRUCTURAL & BIM SOLUTIONS</div>
             </div>
           </a>
 
@@ -172,7 +172,7 @@ export default function Navbar({ onOpenQuoteModal }) {
                   📞 +1 (760) 588-2207
                 </a>
                 <span>•</span>
-                <a href="mailto:info@calibertechsolutions.com" style={{ color: 'var(--color-cyan-bright)' }}>
+                <a href="mailto:info@dksonassociates.com" style={{ color: 'var(--color-cyan-bright)' }}>
                   ✉️ Email Desk
                 </a>
               </div>

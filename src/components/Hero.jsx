@@ -98,22 +98,22 @@ export default function Hero({ onOpenQuoteModal }) {
       <div className="container">
         <div className="hero-content">
           
-          {/* Left Column: Headlines & CTAs */}
+          {/* Left Column: Headlines & CTAs with Reload Bottom-to-Top Animation */}
           <div className="hero-text-block">
-            <div className="hero-badge">
+            <div className="hero-badge fade-up-badge">
               <span className="pulse-dot"></span>
               <span>Next-Gen Structural Steel Detailing & BIM 3D</span>
             </div>
 
-            <h1 className="hero-title">
+            <h1 className="hero-title fade-up-title">
               Precision Steel Detailing & <span className="text-gradient">3D BIM Solutions</span> That Power Fabrication
             </h1>
 
-            <p className="hero-subtitle">
+            <p className="hero-subtitle fade-up-subtitle">
               Delivering fabrication-ready shop drawings, PE-stamped connection designs, and Tekla BIM models across North America with an unmatched <strong>99.8% first-pass approval rate</strong>.
             </p>
 
-            <div className="hero-cta-group">
+            <div className="hero-cta-group fade-up-cta">
               <button 
                 className="btn-primary hero-btn-main"
                 onClick={() => onOpenQuoteModal ? onOpenQuoteModal() : document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
@@ -129,7 +129,7 @@ export default function Hero({ onOpenQuoteModal }) {
             </div>
 
             {/* Feature Guarantee Strip */}
-            <div className="hero-features-strip">
+            <div className="hero-features-strip fade-up-features">
               <div className="hero-feature-item">
                 <CheckCircle2 size={18} className="hero-feature-icon" />
                 <span>AISC & NISD Certified</span>
@@ -149,8 +149,8 @@ export default function Hero({ onOpenQuoteModal }) {
             </div>
           </div>
 
-          {/* Right Column: Hero 3D Card */}
-          <div className="hero-viewer-wrapper">
+          {/* Right Column: Hero 3D Card with Reload Fade Up Entrance */}
+          <div className="hero-viewer-wrapper fade-up-card">
             
             {/* Desktop Only Floating Satellite Badges (Positioned cleanly outside card, hidden on mobile) */}
             <div className={`floating-hero-badge float-top-left desktop-badge ${isInteracting ? 'hover-elevate-1' : ''}`}>
