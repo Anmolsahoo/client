@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import heroVideo from '../assets/hero-bg.mp4';
 
 import { 
   ArrowRight, 
@@ -90,6 +91,7 @@ export default function Hero({ onOpenQuoteModal }) {
 
   return (
     <section className="hero-section">
+      <video className="hero-bg-video" autoPlay loop muted playsInline src={heroVideo} />
       
       <div className="hero-grid-pattern"></div>
       
@@ -455,6 +457,7 @@ export default function Hero({ onOpenQuoteModal }) {
     </section>
   );
 }
+
 
 
 

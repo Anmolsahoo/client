@@ -34,8 +34,8 @@ export default function Navbar({ onOpenQuoteModal }) {
     { label: 'Services', href: '#services' },
     { label: 'Why Dkson', href: '#why-us' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Estimator', href: '#estimator' },
-    { label: 'FAQ', href: '#faq' },
+    
+     
     { label: 'Contact', href: '#contact' }
   ];
 
