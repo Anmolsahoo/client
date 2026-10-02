@@ -1,7 +1,35 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Star, Quote, Award, CheckCircle, ShieldCheck } from 'lucide-react';
 
 export default function TestimonialsSection() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const cards = sectionRef.current?.querySelectorAll('.testimonial-card');
+    if (!cards || cards.length === 0) return;
+
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach((card) => card.classList.add('mobile-card-arrived'));
+      return;
+    }
+
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('mobile-card-arrived');
+          } else {
+            entry.target.classList.remove('mobile-card-arrived');
+          }
+        });
+      },
+      { threshold: 0.02, rootMargin: '0px 0px -10px 0px' }
+    );
+
+    cards.forEach((card) => cardObserver.observe(card));
+    return () => cardObserver.disconnect();
+  }, []);
+
   const reviews = [
     {
       name: 'Marcus Vance',
@@ -38,7 +66,7 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid rgba(148, 163, 184, 0.1)' }}>
+    <section ref={sectionRef} className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid rgba(148, 163, 184, 0.1)' }}>
       <div className="container">
         
         {/* Header */}
@@ -63,7 +91,7 @@ export default function TestimonialsSection() {
           marginBottom: '4.5rem'
         }}>
           {reviews.map((r, idx) => (
-            <div key={idx} className="glass-card" style={{ display: 'flex', flexDirection: 'column' }}>
+            <div key={idx} className={`testimonial-card glass-card mobile-anim-${idx % 2 === 0 ? 'left' : 'right'}`} style={{ display: 'flex', flexDirection: 'column' }}>
               
               {/* Stars */}
               <div style={{ display: 'flex', gap: '0.25rem', marginBottom: '1.25rem', color: '#f59e0b' }}>
@@ -139,3 +167,4 @@ export default function TestimonialsSection() {
     </section>
   );
 }
+

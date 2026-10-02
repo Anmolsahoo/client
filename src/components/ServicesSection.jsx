@@ -178,9 +178,7 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
             entry.target.classList.add('card-arrived');
           } else {
             // Only hide if the card is pushed down below the viewport, not if it scrolls past the top
-            if (entry.boundingClientRect.top > 0) {
-              entry.target.classList.remove('card-arrived');
-            }
+            entry.target.classList.remove('card-arrived');
           }
         });
       },
@@ -480,3 +478,4 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
     </section>
   );
 }
+

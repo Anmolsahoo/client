@@ -15,8 +15,6 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.innerWidth > 768) return;
-
     const cards = sectionRef.current?.querySelectorAll('[data-award-card="true"]');
     if (!cards || cards.length === 0) return;
 
@@ -30,23 +28,17 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('mobile-card-arrived');
-            cardObserver.unobserve(entry.target);
-          }
+          } else { entry.target.classList.remove('mobile-card-arrived'); }
         });
       },
       {
-        threshold: 0.12,
-        rootMargin: '0px 0px -30px 0px'
+        threshold: 0.02,
+        rootMargin: '0px 0px -10px 0px'
       }
     );
 
     cards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      if (rect.bottom < 0) {
-        card.classList.add('mobile-card-arrived');
-      } else {
-        cardObserver.observe(card);
-      }
+      cardObserver.observe(card);
     });
 
     return () => cardObserver.disconnect();
@@ -263,3 +255,4 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
     </section>
   );
 }
+

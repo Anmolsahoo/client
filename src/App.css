@@ -1265,7 +1265,7 @@
   
   /* Mobile entrance animation offsets (gentle slide from left and right) */
   .service-sliding-card.card-comes-from-left {
-    transform: translateX(-60px);
+    transform: translateX(60px);
     transition-delay: 0s !important;
   }
   
@@ -1279,26 +1279,7 @@
     transform: translateX(0);
   }
   
-  /* Missing Stats Cards Mobile Animations */
-  .stat-card.mobile-anim-left {
-    opacity: 0;
-    transform: translateX(-60px);
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform, opacity;
-  }
-  
-  .stat-card.mobile-anim-right {
-    opacity: 0;
-    transform: translateX(60px);
-    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform, opacity;
-  }
-  
-  .stat-card.mobile-anim-left.mobile-card-arrived,
-  .stat-card.mobile-anim-right.mobile-card-arrived {
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-  }
+  /* Classes moved to global scope at bottom of file */
 }
 
 /* Interactive 3D Model Showcase Section */
@@ -2402,3 +2383,38 @@ h1, h2, h3, h4, p, span, button, a {
   text-size-adjust: 100%;
 }
 
+
+/* =========================================
+   GLOBAL COMPONENT CARD SLIDING ANIMATIONS
+   Applies to Stats, WhyChooseUs, Projects, etc.
+   ========================================= */
+.mobile-anim-left, .mobile-anim-right {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.mobile-anim-left {
+  transform: translateX(-120px);
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-anim-right {
+  transform: translateX(120px);
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-anim-left.mobile-card-arrived,
+.mobile-anim-right.mobile-card-arrived {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
+}
+
+/* Adjust sliding distance on smaller screens for mobile responsiveness */
+@media (max-width: 868px) {
+  .mobile-anim-left {
+    transform: translateX(60px); /* Changed to 60px so it comes from the right side */
+  }
+  .mobile-anim-right {
+    transform: translateX(60px);
+  }
+}

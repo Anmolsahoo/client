@@ -15,6 +15,33 @@ export default function InteractiveModelViewer() {
   const [renderMode, setRenderMode] = useState('shaded'); // 'shaded' | 'wireframe' | 'stress' | 'cnc'
   const [rotation, setRotation] = useState(0);
   const [selectedHotspot, setSelectedHotspot] = useState(null);
+  const sectionRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const cards = sectionRef.current?.querySelectorAll('.model-showcase-container');
+    if (!cards || cards.length === 0) return;
+
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach((card) => card.classList.add('mobile-card-arrived'));
+      return;
+    }
+
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('mobile-card-arrived');
+          } else {
+            entry.target.classList.remove('mobile-card-arrived');
+          }
+        });
+      },
+      { threshold: 0.02, rootMargin: '0px 0px -10px 0px' }
+    );
+
+    cards.forEach((card) => cardObserver.observe(card));
+    return () => cardObserver.disconnect();
+  }, []);
 
   const models = [
     {
@@ -52,7 +79,7 @@ export default function InteractiveModelViewer() {
   const currentModel = models.find(m => m.id === selectedModel);
 
   return (
-    <section id="bim-viewer" className="section model-showcase-section">
+    <section id="bim-viewer" ref={sectionRef} className="section model-showcase-section">
       <div className="container">
         
         {/* Header */}
@@ -70,7 +97,7 @@ export default function InteractiveModelViewer() {
         </div>
 
         {/* Showcase Layout */}
-        <div className="model-showcase-container">
+        <div className="model-showcase-container mobile-anim-left">
           
           {/* Left: Model Selector Panel */}
           <div className="model-selector-panel">
@@ -397,3 +424,4 @@ export default function InteractiveModelViewer() {
     </section>
   );
 }
+

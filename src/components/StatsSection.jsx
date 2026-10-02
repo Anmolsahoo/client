@@ -65,11 +65,7 @@ export default function StatsSection() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('mobile-card-arrived');
-          } else {
-            if (entry.boundingClientRect.top > 0) {
-              entry.target.classList.remove('mobile-card-arrived');
-            }
-          }
+          } else { entry.target.classList.remove('mobile-card-arrived'); }
         });
       },
       {
@@ -150,3 +146,4 @@ export default function StatsSection() {
     </section>
   );
 }
+

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Building, 
   MapPin, 
@@ -14,6 +14,7 @@ import {
 export default function ProjectsShowcase({ onOpenQuoteModal }) {
   const [filter, setFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
+  const sectionRef = useRef(null);
 
   const categories = [
     { id: 'all', label: 'All Projects' },
@@ -130,8 +131,34 @@ export default function ProjectsShowcase({ onOpenQuoteModal }) {
 
   const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
 
+  useEffect(() => {
+    const cards = sectionRef.current?.querySelectorAll('.project-card');
+    if (!cards || cards.length === 0) return;
+
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach((card) => card.classList.add('mobile-card-arrived'));
+      return;
+    }
+
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('mobile-card-arrived');
+          } else {
+            entry.target.classList.remove('mobile-card-arrived');
+          }
+        });
+      },
+      { threshold: 0.02, rootMargin: '0px 0px -10px 0px' }
+    );
+
+    cards.forEach((card) => cardObserver.observe(card));
+    return () => cardObserver.disconnect();
+  }, [filtered]);
+
   return (
-    <section id="projects" className="section" style={{ background: 'var(--bg-secondary)' }}>
+    <section id="projects" ref={sectionRef} className="section" style={{ background: 'var(--bg-secondary)' }}>
       <div className="container">
         
         {/* Title */}
@@ -163,8 +190,8 @@ export default function ProjectsShowcase({ onOpenQuoteModal }) {
 
         {/* Grid */}
         <div className="projects-grid">
-          {filtered.map(proj => (
-            <div key={proj.id} className="project-card">
+          {filtered.map((proj, idx) => (
+            <div key={proj.id} className={`project-card mobile-anim-${idx % 2 === 0 ? 'left' : 'right'}`}>
               <div className="project-img-wrap">
                 <img src={proj.image} alt={proj.title} className="project-img" loading="lazy" decoding="async" />
                 <span className="project-category-tag">
@@ -283,3 +310,4 @@ export default function ProjectsShowcase({ onOpenQuoteModal }) {
     </section>
   );
 }
+

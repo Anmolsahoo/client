@@ -15,6 +15,33 @@ export default function CostEstimator({ onApplyEstimateToForm }) {
   const [complexity, setComplexity] = useState('medium'); // 'simple' | 'medium' | 'complex'
   const [scope, setScope] = useState('full'); // 'detailing' | 'connection' | 'full'
   const [schedule, setSchedule] = useState('standard'); // 'standard' | 'fast'
+  const sectionRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const cards = sectionRef.current?.querySelectorAll('.estimator-card');
+    if (!cards || cards.length === 0) return;
+
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach((card) => card.classList.add('mobile-card-arrived'));
+      return;
+    }
+
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('mobile-card-arrived');
+          } else {
+            entry.target.classList.remove('mobile-card-arrived');
+          }
+        });
+      },
+      { threshold: 0.02, rootMargin: '0px 0px -10px 0px' }
+    );
+
+    cards.forEach((card) => cardObserver.observe(card));
+    return () => cardObserver.disconnect();
+  }, []);
 
   // Dynamic calculations based on industry standard Tekla detailing hours per ton
   const complexityMultiplier = complexity === 'simple' ? 1.8 : (complexity === 'medium' ? 2.5 : 3.6);
@@ -43,7 +70,7 @@ export default function CostEstimator({ onApplyEstimateToForm }) {
   };
 
   return (
-    <section id="estimator" className="section" style={{ background: 'var(--bg-primary)' }}>
+    <section id="estimator" ref={sectionRef} className="section" style={{ background: 'var(--bg-primary)' }}>
       <div className="container">
         
         {/* Header */}
@@ -61,7 +88,7 @@ export default function CostEstimator({ onApplyEstimateToForm }) {
         </div>
 
         {/* Main Estimator Card */}
-        <div className="estimator-card">
+        <div className="estimator-card mobile-anim-left">
           
           {/* Controls Column */}
           <div className="estimator-controls">
@@ -232,3 +259,4 @@ export default function CostEstimator({ onApplyEstimateToForm }) {
     </section>
   );
 }
+
