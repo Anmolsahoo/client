@@ -62,7 +62,7 @@ export default function Hero({ onOpenQuoteModal }) {
     });
   };
 
-  // Touch handlers for Mobile Devices
+  // Touch handlers for Mobile Devices (gentle tilt, non-blocking)
   const handleTouchMove = (e) => {
     if (e.touches && e.touches[0]) {
       const rect = e.currentTarget.getBoundingClientRect();
@@ -70,8 +70,8 @@ export default function Hero({ onOpenQuoteModal }) {
       const x = (touch.clientX - rect.left) / rect.width - 0.5;
       const y = (touch.clientY - rect.top) / rect.height - 0.5;
       setTilt({
-        x: -(y * 10).toFixed(2),
-        y: (x * 10).toFixed(2)
+        x: -(y * 4).toFixed(1),
+        y: (x * 4).toFixed(1)
       });
     }
   };
@@ -84,7 +84,7 @@ export default function Hero({ onOpenQuoteModal }) {
     setTimeout(() => {
       setIsInteracting(false);
       setTilt({ x: 0, y: 0 });
-    }, 500);
+    }, 300);
   };
 
   return (

@@ -50,6 +50,45 @@ export default function StatsSection() {
     return () => observer.disconnect();
   }, [hasAnimated]);
 
+  // Scroll-based entrance animation for cards strictly on mobile
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth > 768) return;
+
+    const cards = sectionRef.current?.querySelectorAll('[data-stat-card="true"]');
+    if (!cards || cards.length === 0) return;
+
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach((card) => card.classList.add('mobile-card-arrived'));
+      return;
+    }
+
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('mobile-card-arrived');
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -30px 0px'
+      }
+    );
+
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      if (rect.bottom < 0) {
+        card.classList.add('mobile-card-arrived');
+      } else {
+        cardObserver.observe(card);
+      }
+    });
+
+    return () => cardObserver.disconnect();
+  }, []);
+
   const stats = [
     {
       icon: <Calendar size={22} />,
@@ -87,22 +126,29 @@ export default function StatsSection() {
     <section ref={sectionRef} className="stats-section">
       <div className="container">
         <div className="stats-grid">
-          {stats.map((stat, idx) => (
-            <div key={idx} className="stat-card">
-              <div className="stat-icon">
-                {stat.icon}
+          {stats.map((stat, idx) => {
+            const isLeft = idx % 2 === 0;
+            return (
+              <div 
+                key={idx} 
+                data-stat-card="true"
+                className={`stat-card mobile-anim-${isLeft ? 'left' : 'right'}`}
+              >
+                <div className="stat-icon">
+                  {stat.icon}
+                </div>
+                <div className="stat-number">
+                  {stat.value}
+                </div>
+                <div className="stat-label">
+                  {stat.label}
+                </div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+                  {stat.sub}
+                </div>
               </div>
-              <div className="stat-number">
-                {stat.value}
-              </div>
-              <div className="stat-label">
-                {stat.label}
-              </div>
-              <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
-                {stat.sub}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

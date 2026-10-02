@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { 
   Check, 
   X, 
@@ -12,6 +12,46 @@ import {
 } from 'lucide-react';
 
 export default function WhyChooseUs({ onOpenQuoteModal }) {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth > 768) return;
+
+    const cards = sectionRef.current?.querySelectorAll('[data-award-card="true"]');
+    if (!cards || cards.length === 0) return;
+
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach((card) => card.classList.add('mobile-card-arrived'));
+      return;
+    }
+
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('mobile-card-arrived');
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -30px 0px'
+      }
+    );
+
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      if (rect.bottom < 0) {
+        card.classList.add('mobile-card-arrived');
+      } else {
+        cardObserver.observe(card);
+      }
+    });
+
+    return () => cardObserver.disconnect();
+  }, []);
+
   const comparisonItems = [
     {
       metric: 'RFI & Revision Turnaround',
@@ -75,7 +115,7 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
   ];
 
   return (
-    <section id="why-us" className="section" style={{ background: 'var(--bg-primary)' }}>
+    <section id="why-us" ref={sectionRef} className="section" style={{ background: 'var(--bg-primary)' }}>
       <div className="container">
         
         {/* Title */}
@@ -92,40 +132,50 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
           </p>
         </div>
 
-        {/* 4 Pillars Grid */}
+        {/* 4 Pillars Grid with alternating mobile scroll animation */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
           gap: '1.75rem',
           marginBottom: '4.5rem'
         }}>
-          {pillars.map((p, idx) => (
-            <div key={idx} className="glass-card">
-              <div style={{
-                width: '56px',
-                height: '56px',
-                borderRadius: 'var(--radius-lg)',
-                background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(99, 102, 241, 0.2))',
-                border: '1px solid rgba(6, 182, 212, 0.35)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--color-cyan-bright)',
-                marginBottom: '1.25rem'
-              }}>
-                {p.icon}
+          {pillars.map((p, idx) => {
+            const isLeft = idx % 2 === 0;
+            return (
+              <div 
+                key={idx} 
+                data-award-card="true"
+                className={`glass-card mobile-anim-${isLeft ? 'left' : 'right'}`}
+              >
+                <div style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: 'var(--radius-lg)',
+                  background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(99, 102, 241, 0.2))',
+                  border: '1px solid rgba(6, 182, 212, 0.35)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'var(--color-cyan-bright)',
+                  marginBottom: '1.25rem'
+                }}>
+                  {p.icon}
+                </div>
+                <h3 style={{ fontSize: '1.2rem', color: '#fff', marginBottom: '0.75rem' }}>{p.title}</h3>
+                <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>{p.desc}</p>
               </div>
-              <h3 style={{ fontSize: '1.2rem', color: '#fff', marginBottom: '0.75rem' }}>{p.title}</h3>
-              <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>{p.desc}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Direct Side-by-Side Comparison */}
         <div className="comparison-grid">
           
-          {/* In-House Detailing */}
-          <div className="comparison-card in-house">
+          {/* In-House Detailing (Card 5: from left) */}
+          <div 
+            data-award-card="true"
+            className="comparison-card in-house mobile-anim-left"
+          >
             <div className="comparison-header">
               <div style={{
                 width: '38px',
@@ -158,8 +208,11 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
             </ul>
           </div>
 
-          {/* Dkson Associates Advantage */}
-          <div className="comparison-card dkson">
+          {/* Dkson Associates Advantage (Card 6: from right) */}
+          <div 
+            data-award-card="true"
+            className="comparison-card dkson mobile-anim-right"
+          >
             <div className="comparison-header">
               <div style={{
                 width: '38px',

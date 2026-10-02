@@ -9,16 +9,12 @@ import {
   Check, 
   ArrowRight,
   ExternalLink,
-  Shield,
-  FileCheck,
-  Sparkles,
   Maximize2
 } from 'lucide-react';
 
 export default function ServicesSection({ onSelectServiceForQuote }) {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedServiceModal, setSelectedServiceModal] = useState(null);
-  const [visibleIndices, setVisibleIndices] = useState([0]); // First row visible by default
   const [previewImage, setPreviewImage] = useState(null);
   const sectionRef = useRef(null);
 
@@ -165,47 +161,43 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
     ? services 
     : services.filter(s => s.category === activeCategory);
 
-  // IntersectionObserver to trigger opposite-side slide-in as user scrolls to each row
+  // IntersectionObserver to trigger smooth opposite-side slide-in as user scrolls to each card
   useEffect(() => {
-    const handleScrollObserve = () => {
-      const rows = document.querySelectorAll('[data-service-row="true"]');
-      if (!rows || rows.length === 0) return;
+    const cards = sectionRef.current?.querySelectorAll('[data-service-card="true"]');
+    if (!cards || cards.length === 0) return;
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const idx = parseInt(entry.target.getAttribute('data-service-idx'), 10);
-              if (!isNaN(idx)) {
-                setVisibleIndices((prev) => (prev.includes(idx) ? prev : [...prev, idx]));
-                observer.unobserve(entry.target);
-              }
-            }
-          });
-        },
-        {
-          threshold: 0.12,
-          rootMargin: '0px 0px -40px 0px'
-        }
-      );
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach(card => card.classList.add('card-arrived'));
+      return;
+    }
 
-      rows.forEach((row) => {
-        observer.observe(row);
-        // Immediate check if element is already in viewport on load or jump
-        const rect = row.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.9 && rect.bottom > 0) {
-          const idx = parseInt(row.getAttribute('data-service-idx'), 10);
-          if (!isNaN(idx)) {
-            setVisibleIndices((prev) => (prev.includes(idx) ? prev : [...prev, idx]));
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('card-arrived');
+            cardObserver.unobserve(entry.target);
           }
-        }
-      });
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: '0px 0px -20px 0px'
+      }
+    );
 
-      return () => observer.disconnect();
-    };
+    cards.forEach((card) => {
+      const rect = card.getBoundingClientRect();
+      // Pre-mark arrived only if user already scrolled past above the viewport
+      if (rect.bottom < 0) {
+        card.classList.add('card-arrived');
+      } else {
+        card.classList.remove('card-arrived');
+        cardObserver.observe(card);
+      }
+    });
 
-    const cleanup = handleScrollObserve();
-    return () => cleanup && cleanup();
+    return () => cardObserver.disconnect();
   }, [activeCategory, filteredServices.length]);
 
   return (
@@ -258,7 +250,6 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
             ======================================================== */}
         <div className="services-dual-showcase-list">
           {filteredServices.map((service, index) => {
-            const isVisible = visibleIndices.includes(index);
             const isEven = index % 2 === 0;
 
             // Card A: Image Showcase Card
@@ -355,13 +346,25 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
                 data-service-idx={index}
                 className="service-paired-row"
               >
-                {/* LEFT CARD: Slides in from the LEFT */}
-                <div className={`service-sliding-card card-comes-from-left ${isVisible ? 'card-arrived' : ''}`}>
+                {/* FIRST CARD:
+                    - Desktop: In left column, slides in from LEFT (-120px)
+                    - Mobile: 1st card in viewport, slides in from LEFT (-70px) */}
+                <div 
+                  data-service-card="true"
+                  data-card-index={index * 2}
+                  className="service-sliding-card card-desktop-left card-comes-from-left mobile-comes-from-left"
+                >
                   {isEven ? renderImageCard() : renderDetailCard()}
                 </div>
 
-                {/* RIGHT CARD: Slides in from the RIGHT */}
-                <div className={`service-sliding-card card-comes-from-right ${isVisible ? 'card-arrived' : ''}`}>
+                {/* SECOND CARD:
+                    - Desktop: In right column, slides in from RIGHT (+120px)
+                    - Mobile: 2nd card in viewport, slides in from RIGHT (+70px) */}
+                <div 
+                  data-service-card="true"
+                  data-card-index={index * 2 + 1}
+                  className="service-sliding-card card-desktop-right card-comes-from-right mobile-comes-from-right"
+                >
                   {isEven ? renderDetailCard() : renderImageCard()}
                 </div>
               </div>

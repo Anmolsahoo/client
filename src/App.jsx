@@ -12,10 +12,33 @@ import FAQSection from './components/FAQSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css'; // Optional but recommended
 import './App.css';
 
 export default function App() {
   const [quoteFormData, setQuoteFormData] = useState(null);
+
+  // Initialize Lenis Smooth Scrolling
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   // Robust Mobile & Desktop Scroll Reveal Observer
   useEffect(() => {
