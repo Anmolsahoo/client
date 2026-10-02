@@ -9,7 +9,8 @@ import {
   Check, 
   ArrowRight,
   ExternalLink,
-  Maximize2
+  Maximize2,
+  Settings
 } from 'lucide-react';
 
 export default function ServicesSection({ onSelectServiceForQuote }) {
@@ -20,25 +21,21 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
 
   const categories = [
     { id: 'all', label: 'All Services' },
-    { id: 'detailing', label: 'Steel Detailing' },
-    { id: 'connection', label: 'Connection Design' },
-    { id: 'bim', label: '3D BIM Modeling' },
-    { id: 'engineering', label: 'Structural Design' },
-    { id: 'estimation', label: 'MTO Estimation' },
-    { id: 'misc', label: 'Misc Metals' }
+    { id: 'steel', label: 'Steel Services' },
+    { id: 'concrete', label: 'Concrete Services' }
   ];
 
   const services = [
     {
       id: 'structural-detailing',
-      category: 'detailing',
+      category: 'steel',
       code: 'SERVICE 01',
       subCode: 'DET-AISC',
       icon: <Building2 size={26} />,
       title: 'Structural Steel Detailing',
       tagline: 'Comprehensive shop & erection drawings with zero-clash fabrication accuracy',
       description: 'We deliver comprehensive, fabrication-ready shop and erection drawings designed for rapid CNC fabrication and seamless, clash-free field erection across North America.',
-      image: 'https://content.app-sources.com/s/432484035579470251/uploads/Caliber/3-4254478.png?format=webp',
+      image: '/images/service-plant.jpg',
       badge: 'Tekla LOD 400 Ready',
       deliverables: [
         'Anchor Bolt Setting Plans & Grout Elevation Layouts',
@@ -52,7 +49,7 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
     },
     {
       id: 'connection-design',
-      category: 'connection',
+      category: 'steel',
       code: 'SERVICE 02',
       subCode: 'ENG-PE49',
       icon: <Cpu size={26} />,
@@ -71,37 +68,17 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
       standards: 'AISC 358 Prequalified, ASCE 7-22, IBC 2024',
       software: 'IDEA StatiCa, RAM Connection, DESCON'
     },
-    {
-      id: 'bim-modeling',
-      category: 'bim',
-      code: 'SERVICE 03',
-      subCode: 'BIM-LOD500',
-      icon: <Box size={26} />,
-      title: '3D BIM Modeling & Clash Coordination',
-      tagline: 'High-fidelity LOD 400 Building Information Models synchronized across all trades',
-      description: 'Intelligent, constructible 3D BIM models coordinated with architectural, MEP, and civil disciplines to eliminate costly field clashes before steel ever touches the fabrication shop floor.',
-      image: 'https://3dpointshot.com/img/service/bim-modelling.png',
-      badge: 'Trimble Connect Live Sync',
-      deliverables: [
-        'Fully Detailed LOD 400 & LOD 500 Constructible Models',
-        'Navisworks Automated Clash Detection & Matrix Reports',
-        'Trimble Connect Cloud Collaboration Live Sync',
-        'IFC, 3D DWG & 3D PDF Model Deliverables for GCs',
-        '4D Construction Sequencing & Phased Erection Simulation'
-      ],
-      standards: 'BIMForum LOD Spec, ISO 19650',
-      software: 'Tekla Structures, Autodesk Revit, Navisworks'
-    },
+    
     {
       id: 'structural-design',
-      category: 'engineering',
+      category: 'steel',
       code: 'SERVICE 04',
       subCode: 'DES-AISC',
       icon: <Layers size={26} />,
       title: 'Structural Steel Design & Engineering',
       tagline: 'Code-compliant structural engineering solutions from concept framing to foundation load paths',
       description: 'Complete structural steel engineering and framing design for commercial, industrial, and institutional facilities. Optimized member sizing for maximum steel weight economy.',
-      image: 'https://content.app-sources.com/s/432484035579470251/uploads/Caliber/5-4254478.png?format=webp',
+      image: '/images/service-arch.jpg',
       badge: 'AISC 360 & AWS D1.1',
       deliverables: [
         'Gravity & Lateral Load Path Engineering Calculations',
@@ -115,7 +92,7 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
     },
     {
       id: 'mto-estimation',
-      category: 'estimation',
+      category: 'steel',
       code: 'SERVICE 05',
       subCode: 'EST-MTO',
       icon: <FileCode size={26} />,
@@ -136,14 +113,14 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
     },
     {
       id: 'misc-metals',
-      category: 'misc',
+      category: 'steel',
       code: 'SERVICE 06',
       subCode: 'MISC-METALS',
       icon: <Grid size={26} />,
       title: 'Miscellaneous Metals Detailing',
       tagline: 'Secondary architectural and industrial steel detailed strictly to OSHA and ADA codes',
       description: 'Precision detailing for commercial stairs, railings, catwalks, ladders, and canopies. Engineered for clean architectural aesthetics and seamless jobsite assembly.',
-      image: 'https://content.app-sources.com/s/432484035579470251/uploads/Caliber/Cowell-Jaguar-Landrover-Isometri-3286297.webp?format=webp',
+      image: '/images/service-tanks.jpg',
       badge: 'OSHA & ADA Compliant',
       deliverables: [
         'Commercial Pan, Monolithic & Monumental Stairs',
@@ -153,6 +130,109 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
         'Canopy Steel, Overhead Frames & Dunnage Detailing'
       ],
       standards: 'OSHA 1910.28, NAAMM AMP 510, ADA Standards',
+      software: 'Tekla Structures, AutoCAD'
+    },
+    {
+      id: 'concrete-detailing',
+      category: 'concrete',
+      code: 'SERVICE 07',
+      subCode: 'DET-CONC',
+      title: 'Concrete Detailing & Rebar',
+      badge: 'Concrete Expert',
+      icon: <Layers size={28} />,
+      image: '/images/service-warehouse.jpg',
+      tagline: 'Comprehensive concrete detailing and reinforcement solutions.',
+      description: 'We provide precise concrete detailing, rebar placement drawings, and bar bending schedules to ensure structural integrity and seamless onsite execution.',
+      deliverables: [
+        'Rebar Placement Drawings',
+        'Bar Bending Schedules (BBS)',
+        'Precast Concrete Detailing',
+        'Tilt-up Panel Detailing',
+        '3D Rebar Modeling',
+        'Material Takeoffs (MTO)'
+      ],
+      standards: 'ACI 318, CRSI Detailing Manual',
+      software: 'Tekla Structures, AutoCAD, Revit'
+    },
+    {
+      id: 'precast-concrete',
+      category: 'concrete',
+      code: 'SERVICE 08',
+      subCode: 'DET-PREC',
+      title: 'Precast Concrete Modeling',
+      badge: 'Concrete Expert',
+      icon: <Building2 size={28} />,
+      image: '/images/service-canopy.jpg',
+      tagline: 'High-LOD precast concrete elements detailing and shop drawings.',
+      description: 'We deliver exact manufacturing drawings for precast elements including double tees, hollow core slabs, wall panels, and columns, fully clash-coordinated.',
+      deliverables: [
+        'Panel Erection Drawings',
+        'Precast Production Drawings',
+        'Hardware & Embed Detailing',
+        'Lifting & Handling Plans',
+        '3D BIM Precast Modeling'
+      ],
+      standards: 'PCI Design Handbook',
+      software: 'Tekla Structures, Revit'
+    },
+    {
+      id: 'formwork-detailing',
+      category: 'concrete',
+      code: 'SERVICE 09',
+      subCode: 'DET-FRM',
+      title: 'Formwork Detailing',
+      badge: 'Concrete Expert',
+      icon: <Layers size={28} />,
+      image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      tagline: 'Precision formwork and shoring detailing for cast-in-place.',
+      description: 'Optimized formwork placement drawings to maximize reuse of materials, ensure safety during pouring, and accelerate the concrete construction schedule.',
+      deliverables: [
+        'Formwork Assembly Drawings',
+        'Shoring & Reshoring Plans',
+        'Pour Sequence Documentation',
+        'Material Utilization Reports'
+      ],
+      standards: 'ACI 347R',
+      software: 'AutoCAD, Revit'
+    },
+    {
+      id: 'erection-engineering',
+      category: 'steel',
+      code: 'SERVICE 10',
+      subCode: 'ENG-ERCT',
+      title: 'Steel Erection Engineering',
+      badge: 'Steel Expert',
+      icon: <Settings size={28} />,
+      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      tagline: 'Safe, sequenced, and optimized steel erection planning.',
+      description: 'Comprehensive erection engineering services including crane rigging plans, lift engineering, and temporary bracing design to ensure safe site operations.',
+      deliverables: [
+        'Erection Sequence Plans',
+        'Crane Lift Plans',
+        'Temporary Bracing Design',
+        'Site Logistics Modeling'
+      ],
+      standards: 'AISC 325, OSHA 1926',
+      software: 'Tekla Structures, AutoCAD'
+    },
+    {
+      id: 'joist-deck-detailing',
+      category: 'steel',
+      code: 'SERVICE 11',
+      subCode: 'DET-JD',
+      title: 'Joist & Deck Detailing',
+      badge: 'Steel Expert',
+      icon: <Box size={28} />,
+      image: 'https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+      tagline: 'Accurate steel joist and metal deck layouts.',
+      description: 'Specialized detailing for open web steel joists, joist girders, and metal decking systems tailored to the exact requirements of the structural engineer.',
+      deliverables: [
+        'Joist Placement Plans',
+        'Deck Layout Drawings',
+        'Fastening & Welding Details',
+        'Bill of Materials (BOM)'
+      ],
+      standards: 'SJI & SDI Specifications',
       software: 'Tekla Structures, AutoCAD'
     }
   ];
@@ -369,6 +449,25 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
 
       </div>
 
+      {/* Concrete Work Contact Button */}
+      {activeCategory === 'concrete' && (
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
+          <button 
+            className="btn-primary" 
+            style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}
+            onClick={() => {
+              if (onSelectServiceForQuote) {
+                onSelectServiceForQuote('Concrete Work');
+              } else {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+          >
+            Contact Us for Concrete Work
+          </button>
+        </div>
+      )}
+
       {/* Deep-Dive Modal for Service Specifications */}
       {selectedServiceModal && (
         <div className="modal-overlay" onClick={() => setSelectedServiceModal(null)}>
@@ -478,4 +577,10 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
     </section>
   );
 }
+
+
+
+
+
+
 

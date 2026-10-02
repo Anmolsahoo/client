@@ -87,9 +87,9 @@ export default function ContactSection({ initialFormData }) {
                 <MapPin size={22} />
               </div>
               <div>
-                <div className="contact-item-title">North America Headquarters</div>
+                <div className="contact-item-title">Headquarters</div>
                 <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: '1.5', marginBottom: '0.5rem' }}>
-                  Overland Park, KS 66213, United States
+                  Cuttack, Odisha
                 </div>
                 <div style={{ fontSize: '0.82rem', color: 'var(--color-cyan-bright)', fontFamily: 'var(--font-mono)' }}>
                   US Central Time (CST) Support
@@ -105,7 +105,7 @@ export default function ContactSection({ initialFormData }) {
               <div>
                 <div className="contact-item-title">Direct Calling Lines</div>
                 <div style={{ fontSize: '0.9rem', color: '#fff', marginBottom: '0.25rem' }}>
-                  <strong>US & Canada:</strong> <a href="tel:+17605882207" style={{ color: 'var(--color-cyan-bright)' }}>+1 (760) 588-2207</a>
+                  <strong>Global:</strong> <a href="tel:+919337491479" style={{ color: 'var(--color-cyan-bright)' }}>+91-9337491479</a>
                 </div>
                 <div style={{ fontSize: '0.9rem', color: '#fff' }}>
                   <strong>Global Desk:</strong> <a href="tel:+919871177166" style={{ color: 'var(--color-cyan-bright)' }}>+91 9871177166</a>
@@ -121,8 +121,8 @@ export default function ContactSection({ initialFormData }) {
               <div>
                 <div className="contact-item-title">Official Project Desk</div>
                 <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                  <a href="mailto:info@dksonassociates.com" style={{ color: 'var(--color-cyan-bright)', fontWeight: 600 }}>
-                    info@dksonassociates.com
+                  <a href="mailto:sales@dksonassociates.com" style={{ color: 'var(--color-cyan-bright)', fontWeight: 600 }}>
+                    sales@dksonassociates.com
                   </a>
                 </div>
                 <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
@@ -174,7 +174,7 @@ export default function ContactSection({ initialFormData }) {
                   Detailing Request Received!
                 </h3>
                 <p style={{ color: 'var(--text-secondary)', maxWidth: '480px', margin: '0 auto 1.5rem', fontSize: '0.98rem' }}>
-                  Thank you, <strong>{formData.name || 'Valued Partner'}</strong>. Our Overland Park senior estimating squad is reviewing your project parameters ({formData.tonnage}, {formData.projectType}) and will deliver a detailed proposal shortly.
+                  Thank you, <strong>{formData.name || 'Valued Partner'}</strong>. Our estimating squad is reviewing your project parameters ({formData.tonnage}, {formData.projectType}) and will deliver a detailed proposal shortly.
                 </p>
                 <button 
                   className="btn-outline"
@@ -323,4 +323,5 @@ export default function ContactSection({ initialFormData }) {
     </section>
   );
 }
+
 

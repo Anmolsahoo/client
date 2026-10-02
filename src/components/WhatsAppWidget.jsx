@@ -7,7 +7,7 @@ export default function WhatsAppWidget() {
   const [tooltipVisible, setTooltipVisible] = useState(true);
 
   // Dkson Associates WhatsApp support line (+91 9871177166 / +1 760 588 2207)
-  const whatsappNumber = '919871177166';
+  const whatsappNumber = '919337491479';
 
   const quickPrompts = [
     '👋 I need a fast quote for an upcoming steel project.',
@@ -156,4 +156,6 @@ export default function WhatsAppWidget() {
     </div>
   );
 }
+
+
 

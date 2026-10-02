@@ -124,19 +124,19 @@ export default function App() {
           </div>
         </div>
 
-        {/* Live Counters */}
-        <div className="scroll-reveal">
-          <StatsSection />
-        </div>
-
         {/* Core Services Portfolio & Deliverables */}
         <div className="scroll-reveal">
           <ServicesSection onSelectServiceForQuote={handleOpenQuoteModal} />
         </div>
 
+        {/* Live Counters */}
+        <div className="scroll-reveal">
+          <StatsSection />
+        </div>
+
         {/* Interactive 3D Tekla & BIM Assembly Studio */}
         <div className="scroll-reveal">
-          <InteractiveModelViewer />
+          
         </div>
 
         {/* The Dkson Associates Advantage & Side-by-Side Comparison */}
@@ -146,12 +146,12 @@ export default function App() {
 
         {/* Real-World Projects Portfolio */}
         <div className="scroll-reveal">
-          <ProjectsShowcase onOpenQuoteModal={handleOpenQuoteModal} />
+          
         </div>
 
         {/* Interactive Detailing Cost & Schedule Estimator */}
         <div className="scroll-reveal">
-          <CostEstimator onApplyEstimateToForm={handleApplyEstimate} />
+          
         </div>
 
         {/* Testimonials & Industry Certifications */}
@@ -178,3 +178,4 @@ export default function App() {
     </div>
   );
 }
+

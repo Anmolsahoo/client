@@ -32,7 +32,6 @@ export default function Navbar({ onOpenQuoteModal }) {
 
   const navLinks = [
     { label: 'Services', href: '#services' },
-    { label: '3D BIM Viewer', href: '#bim-viewer' },
     { label: 'Why Dkson', href: '#why-us' },
     { label: 'Projects', href: '#projects' },
     { label: 'Estimator', href: '#estimator' },
@@ -64,7 +63,7 @@ export default function Navbar({ onOpenQuoteModal }) {
             <span className="badge-tag">AISC & NISD Detailing Partner</span>
             <div className="top-bar-item">
               <MapPin size={14} style={{ color: 'var(--color-cyan-bright)' }} />
-              <span>Overland Park, KS & Global Engineering Squads</span>
+              <span>Cuttack, Odisha & Global Engineering Squads</span>
             </div>
             <div className="top-bar-item">
               <ShieldCheck size={14} style={{ color: 'var(--color-cyan-bright)' }} />
@@ -72,13 +71,13 @@ export default function Navbar({ onOpenQuoteModal }) {
             </div>
           </div>
           <div className="top-bar-right">
-            <a href="tel:+17605882207" className="top-bar-item">
+            <a href="tel:+919337491479" className="top-bar-item">
               <Phone size={14} style={{ color: 'var(--color-cyan-bright)' }} />
-              <span>US: +1 (760) 588-2207</span>
+              <span>+91-9337491479</span>
             </a>
-            <a href="mailto:info@dksonassociates.com" className="top-bar-item">
+            <a href="mailto:sales@dksonassociates.com" className="top-bar-item">
               <Mail size={14} style={{ color: 'var(--color-cyan-bright)' }} />
-              <span>info@dksonassociates.com</span>
+              <span>sales@dksonassociates.com</span>
             </a>
           </div>
         </div>
@@ -94,8 +93,8 @@ export default function Navbar({ onOpenQuoteModal }) {
               <Building2 size={22} />
             </div>
             <div className="brand-text-block">
-              <div className="brand-name">DKSON ASSOCIATES</div>
-              <div className="brand-tagline">STRUCTURAL & BIM SOLUTIONS</div>
+              <div className="brand-name">DKASSOCIATION</div>
+              <div className="brand-tagline">STEEL STRUCTURAL AND CONCRETE WORK</div>
             </div>
           </a>
 
@@ -168,11 +167,11 @@ export default function Navbar({ onOpenQuoteModal }) {
               </button>
 
               <div style={{ display: 'flex', justifyContent: 'center', gap: '1.2rem', marginTop: '1rem', fontSize: '0.82rem', color: '#94a3b8' }}>
-                <a href="tel:+17605882207" style={{ color: 'var(--color-cyan-bright)' }}>
-                  📞 +1 (760) 588-2207
+                <a href="tel:+919337491479" style={{ color: 'var(--color-cyan-bright)' }}>
+                  📞 +91-9337491479
                 </a>
                 <span>•</span>
-                <a href="mailto:info@dksonassociates.com" style={{ color: 'var(--color-cyan-bright)' }}>
+                <a href="mailto:sales@dksonassociates.com" style={{ color: 'var(--color-cyan-bright)' }}>
                   ✉️ Email Desk
                 </a>
               </div>

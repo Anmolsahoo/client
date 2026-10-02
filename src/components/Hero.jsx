@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import heroVideo from '../assets/hero-bg.mp4';
 import { 
   ArrowRight, 
   Layers, 
@@ -89,6 +90,9 @@ export default function Hero({ onOpenQuoteModal }) {
 
   return (
     <section className="hero-section">
+      <video autoPlay loop muted playsInline className="hero-bg-video">
+        <source src={heroVideo} type="video/mp4" />
+      </video>
       <div className="hero-grid-pattern"></div>
       
       {/* Radiant Glow Orbs */}
@@ -106,7 +110,7 @@ export default function Hero({ onOpenQuoteModal }) {
             </div>
 
             <h1 className="hero-title fade-up-title">
-              Precision Steel Detailing & <span className="text-gradient">3D BIM Solutions</span> That Power Fabrication
+              Precision Steel Detailing & <span className="text-gradient">concrete work</span>
             </h1>
 
             <p className="hero-subtitle fade-up-subtitle">
@@ -456,4 +460,5 @@ export default function Hero({ onOpenQuoteModal }) {
     </section>
   );
 }
+
 

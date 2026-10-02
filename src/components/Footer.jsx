@@ -76,31 +76,24 @@ export default function Footer() {
           <div>
             <h4 className="footer-col-title">Headquarters & Centers</h4>
             <ul className="footer-links-list">
-              <li style={{ display: 'flex', gap: '0.6rem', color: '#cbd5e1', fontSize: '0.88rem' }}>
+                            <li style={{ display: 'flex', gap: '0.6rem', color: '#cbd5e1', fontSize: '0.88rem' }}>
                 <MapPin size={18} style={{ color: 'var(--color-cyan-bright)', flexShrink: 0, marginTop: '2px' }} />
                 <span>
-                  <strong>US Headquarters:</strong><br />
-                  Overland Park, KS 66213, USA
-                </span>
-              </li>
-              <li style={{ display: 'flex', gap: '0.6rem', color: '#cbd5e1', fontSize: '0.88rem' }}>
-                <MapPin size={18} style={{ color: 'var(--color-cyan-bright)', flexShrink: 0, marginTop: '2px' }} />
-                <span>
-                  <strong>Global Engineering Center:</strong><br />
-                  New Delhi, India
+                  <strong>Headquarters:</strong><br />
+                  Cuttack, Odisha, India
                 </span>
               </li>
               <li style={{ display: 'flex', gap: '0.6rem', color: '#cbd5e1', fontSize: '0.88rem' }}>
                 <Phone size={18} style={{ color: 'var(--color-cyan-bright)', flexShrink: 0, marginTop: '2px' }} />
                 <span>
-                  US: <a href="tel:+17605882207" style={{ color: 'var(--color-cyan-bright)' }}>+1 (760) 588-2207</a><br />
+                  Phone: <a href="tel:+919337491479" style={{ color: 'var(--color-cyan-bright)' }}>+91-9337491479</a><br />
                   Global: <a href="tel:+919871177166" style={{ color: 'var(--color-cyan-bright)' }}>+91 9871177166</a>
                 </span>
               </li>
               <li style={{ display: 'flex', gap: '0.6rem', color: '#cbd5e1', fontSize: '0.88rem' }}>
                 <Mail size={18} style={{ color: 'var(--color-cyan-bright)', flexShrink: 0, marginTop: '2px' }} />
-                <a href="mailto:info@dksonassociates.com" style={{ color: 'var(--color-cyan-bright)' }}>
-                  info@dksonassociates.com
+                <a href="mailto:sales@dksonassociates.com" style={{ color: 'var(--color-cyan-bright)' }}>
+                  sales@dksonassociates.com
                 </a>
               </li>
             </ul>
@@ -141,4 +134,6 @@ export default function Footer() {
     </footer>
   );
 }
+
+
 
