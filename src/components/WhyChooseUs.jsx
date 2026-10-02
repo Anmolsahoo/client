@@ -159,100 +159,11 @@ export default function WhyChooseUs({ onOpenQuoteModal }) {
             );
           })}
         </div>
-
-        {/* Direct Side-by-Side Comparison */}
-        <div className="comparison-grid">
-          
-          {/* In-House Detailing (Card 5: from left) */}
-          <div 
-            data-award-card="true"
-            className="comparison-card in-house mobile-anim-left"
-          >
-            <div className="comparison-header">
-              <div style={{
-                width: '38px',
-                height: '38px',
-                borderRadius: '50%',
-                background: 'rgba(239, 68, 68, 0.15)',
-                color: '#ef4444',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <X size={20} />
-              </div>
-              <div>
-                <h3 style={{ fontSize: '1.25rem', color: '#fca5a5' }}>Conventional In-House Detailing</h3>
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Typical Industry Challenges</div>
-              </div>
-            </div>
-
-            <ul className="comparison-list">
-              {comparisonItems.map((item, idx) => (
-                <li key={idx} className="comparison-item" style={{ color: '#94a3b8' }}>
-                  <X size={18} style={{ color: '#ef4444', flexShrink: 0, marginTop: '3px' }} />
-                  <div>
-                    <strong style={{ color: '#cbd5e1', display: 'block', fontSize: '0.88rem' }}>{item.metric}</strong>
-                    <span>{item.inHouse}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Dkson Associates Advantage (Card 6: from right) */}
-          <div 
-            data-award-card="true"
-            className="comparison-card dkson mobile-anim-right"
-          >
-            <div className="comparison-header">
-              <div style={{
-                width: '38px',
-                height: '38px',
-                borderRadius: '50%',
-                background: 'rgba(6, 182, 212, 0.2)',
-                color: 'var(--color-cyan-bright)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 0 15px rgba(6, 182, 212, 0.4)'
-              }}>
-                <Check size={20} />
-              </div>
-              <div>
-                <h3 style={{ fontSize: '1.25rem', color: '#ffffff' }}>The Dkson Associates Model</h3>
-                <div style={{ fontSize: '0.8rem', color: 'var(--color-cyan-bright)', fontWeight: 600 }}>US Project Management + Global Velocity</div>
-              </div>
-            </div>
-
-            <ul className="comparison-list">
-              {comparisonItems.map((item, idx) => (
-                <li key={idx} className="comparison-item">
-                  <Check size={18} style={{ color: 'var(--color-cyan-bright)', flexShrink: 0, marginTop: '3px' }} />
-                  <div>
-                    <strong style={{ color: '#ffffff', display: 'block', fontSize: '0.88rem' }}>{item.metric}</strong>
-                    <span style={{ color: item.highlight ? '#67e8f9' : '#cbd5e1' }}>{item.dkson}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-
-            <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(6, 182, 212, 0.2)' }}>
-              <button 
-                className="btn-primary" 
-                style={{ width: '100%' }}
-                onClick={() => onOpenQuoteModal ? onOpenQuoteModal() : document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <span>Partner With Dkson Associates</span>
-                <ArrowRight size={16} />
-              </button>
-            </div>
-          </div>
-
-        </div>
-
       </div>
     </section>
   );
 }
+
+
+
 

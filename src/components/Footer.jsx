@@ -30,7 +30,7 @@ export default function Footer() {
               <div>
                 <div style={{ fontWeight: 800, fontSize: '1.25rem', color: '#fff' }}>DKSON ASSOCIATES</div>
                 <div style={{ fontSize: '0.65rem', color: 'var(--color-cyan-bright)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                  STRUCTURAL & BIM SOLUTIONS
+                  STEEL WORK AND CONCRETE WORK
                 </div>
               </div>
             </div>
@@ -51,11 +51,11 @@ export default function Footer() {
             <h4 className="footer-col-title">Core Navigation</h4>
             <ul className="footer-links-list">
               <li><a href="#services" className="footer-link">Steel Detailing Services</a></li>
-              <li><a href="#bim-viewer" className="footer-link">Interactive 3D BIM Viewer</a></li>
+               
               <li><a href="#why-us" className="footer-link">The Dkson Advantage</a></li>
               <li><a href="#projects" className="footer-link">Project Portfolio</a></li>
-              <li><a href="#estimator" className="footer-link">Detailing Cost Estimator</a></li>
-              <li><a href="#faq" className="footer-link">Frequently Asked Questions</a></li>
+              
+              
             </ul>
           </div>
 
@@ -65,7 +65,7 @@ export default function Footer() {
             <ul className="footer-links-list">
               <li><a href="#services" className="footer-link">Structural Steel Shop Drawings</a></li>
               <li><a href="#services" className="footer-link">PE Stamped Connection Calcs</a></li>
-              <li><a href="#services" className="footer-link">Tekla 3D BIM Modeling</a></li>
+              
               <li><a href="#services" className="footer-link">Miscellaneous Metals & Stairs</a></li>
               <li><a href="#services" className="footer-link">Automated CNC & DSTV Deliverables</a></li>
               <li><a href="#services" className="footer-link">Rebar & Precast Concrete Detailing</a></li>
@@ -134,6 +134,8 @@ export default function Footer() {
     </footer>
   );
 }
+
+
 
 
 

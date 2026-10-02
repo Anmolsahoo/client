@@ -8,7 +8,7 @@ import WhyChooseUs from './components/WhyChooseUs';
 import ProjectsShowcase from './components/ProjectsShowcase';
 import CostEstimator from './components/CostEstimator';
 import TestimonialsSection from './components/TestimonialsSection';
-import FAQSection from './components/FAQSection';
+
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import WhatsAppWidget from './components/WhatsAppWidget';
@@ -79,7 +79,7 @@ export default function App() {
     if (serviceName) {
       setQuoteFormData({ scope: serviceName });
     }
-    const contactElem = document.getElementById('contact');
+    const contactElem = document.getElementById('quote-form') || document.getElementById('contact');
     if (contactElem) {
       contactElem.scrollIntoView({ behavior: 'smooth' });
     }
@@ -87,7 +87,7 @@ export default function App() {
 
   const handleApplyEstimate = (estimateData) => {
     setQuoteFormData(estimateData);
-    const contactElem = document.getElementById('contact');
+    const contactElem = document.getElementById('quote-form') || document.getElementById('contact');
     if (contactElem) {
       contactElem.scrollIntoView({ behavior: 'smooth' });
     }
@@ -159,10 +159,7 @@ export default function App() {
           <TestimonialsSection />
         </div>
 
-        {/* Frequently Asked Questions */}
-        <div className="scroll-reveal">
-          <FAQSection />
-        </div>
+        
 
         {/* Contact & Proposal Request Form */}
         <div className="scroll-reveal">
@@ -178,4 +175,6 @@ export default function App() {
     </div>
   );
 }
+
+
 

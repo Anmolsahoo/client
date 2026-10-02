@@ -153,7 +153,7 @@ export default function ContactSection({ initialFormData }) {
           </div>
 
           {/* Right: Quote Request Form */}
-          <div className="quote-form-card">
+          <div id="quote-form" className="quote-form-card">
             {submitted ? (
               <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
                 <div style={{
@@ -323,5 +323,6 @@ export default function ContactSection({ initialFormData }) {
     </section>
   );
 }
+
 
 

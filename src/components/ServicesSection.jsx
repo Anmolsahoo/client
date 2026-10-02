@@ -47,27 +47,7 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
       standards: 'AISC 360, AISC 303, NISD Class 1 QPP',
       software: 'Tekla Structures v2024, SDS/2'
     },
-    {
-      id: 'connection-design',
-      category: 'steel',
-      code: 'SERVICE 02',
-      subCode: 'ENG-PE49',
-      icon: <Cpu size={26} />,
-      title: 'PE Stamped Connection Design',
-      tagline: 'Licensed engineering calculations for complex moment, shear & seismic connections',
-      description: 'Professional engineering connection design packages stamped by licensed structural engineers across 49 US States. Certified for high-seismic and extreme lateral wind loading.',
-      image: 'https://content.app-sources.com/s/432484035579470251/uploads/Caliber/4-4254478.png?format=webp',
-      badge: 'PE Stamped in 49 States',
-      deliverables: [
-        'Moment Connections (WUF-W, RBS Dogbone, Bolted Flange)',
-        'Heavy Chevron & Diagonal Bracing Gusset Plate Design',
-        'Column Base Plates & High-Capacity Anchor Rod Packages',
-        'Full Structural Calculation Books with PE Engineering Seal',
-        'Non-Standard Custom Node Finite Element Verification'
-      ],
-      standards: 'AISC 358 Prequalified, ASCE 7-22, IBC 2024',
-      software: 'IDEA StatiCa, RAM Connection, DESCON'
-    },
+    
     
     {
       id: 'structural-design',
@@ -577,6 +557,7 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
     </section>
   );
 }
+
 
 
 

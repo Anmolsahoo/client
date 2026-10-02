@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import heroVideo from '../assets/hero-bg.mp4';
+
 import { 
   ArrowRight, 
   Layers, 
@@ -90,9 +90,7 @@ export default function Hero({ onOpenQuoteModal }) {
 
   return (
     <section className="hero-section">
-      <video autoPlay loop muted playsInline className="hero-bg-video">
-        <source src={heroVideo} type="video/mp4" />
-      </video>
+      
       <div className="hero-grid-pattern"></div>
       
       {/* Radiant Glow Orbs */}
@@ -106,7 +104,7 @@ export default function Hero({ onOpenQuoteModal }) {
           <div className="hero-text-block">
             <div className="hero-badge fade-up-badge">
               <span className="pulse-dot"></span>
-              <span>Next-Gen Structural Steel Detailing & BIM 3D</span>
+              <span>Next-Gen Structural Steel Detailing & concrete work</span>
             </div>
 
             <h1 className="hero-title fade-up-title">
@@ -126,10 +124,7 @@ export default function Hero({ onOpenQuoteModal }) {
                 <ArrowRight size={18} />
               </button>
 
-              <a href="#bim-viewer" className="btn-outline hero-btn-sec">
-                <Box size={18} style={{ color: 'var(--color-cyan-bright)' }} />
-                <span>Explore 3D Models</span>
-              </a>
+              
             </div>
 
             {/* Feature Guarantee Strip */}
@@ -460,5 +455,8 @@ export default function Hero({ onOpenQuoteModal }) {
     </section>
   );
 }
+
+
+
 
 

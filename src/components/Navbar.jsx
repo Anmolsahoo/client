@@ -118,7 +118,7 @@ export default function Navbar({ onOpenQuoteModal }) {
             {/* Desktop Only Button (hidden on mobile) */}
             <button 
               className="btn-primary nav-cta-btn" 
-              onClick={() => onOpenQuoteModal ? onOpenQuoteModal() : document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => onOpenQuoteModal ? onOpenQuoteModal() : document.getElementById('quote-form') || document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <span>Get Detailing Quote</span>
               <ArrowRight size={16} />
@@ -159,7 +159,7 @@ export default function Navbar({ onOpenQuoteModal }) {
                 style={{ width: '100%', justifyContent: 'center', padding: '0.9rem' }}
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  document.getElementById('quote-form') || document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
                 <span>Request Detailing Proposal</span>
@@ -182,4 +182,5 @@ export default function Navbar({ onOpenQuoteModal }) {
     </>
   );
 }
+
 
