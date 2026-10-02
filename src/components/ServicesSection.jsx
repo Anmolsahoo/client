@@ -177,13 +177,16 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
           if (entry.isIntersecting) {
             entry.target.classList.add('card-arrived');
           } else {
-            entry.target.classList.remove('card-arrived');
+            // Only hide if the card is pushed down below the viewport, not if it scrolls past the top
+            if (entry.boundingClientRect.top > 0) {
+              entry.target.classList.remove('card-arrived');
+            }
           }
         });
       },
       {
-        threshold: 0.15, // Wait until 15% is visible for a smoother trigger
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.02, 
+        rootMargin: '0px 0px -10px 0px'
       }
     );
 

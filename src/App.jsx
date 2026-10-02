@@ -56,7 +56,10 @@ export default function App() {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-revealed');
           } else {
-            entry.target.classList.remove('is-revealed');
+            // Only hide the section if it is pushed down below the viewport, not if it scrolls past the top
+            if (entry.boundingClientRect.top > 0) {
+              entry.target.classList.remove('is-revealed');
+            }
           }
         });
       },
