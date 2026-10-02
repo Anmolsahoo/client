@@ -176,25 +176,19 @@ export default function ServicesSection({ onSelectServiceForQuote }) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('card-arrived');
-            cardObserver.unobserve(entry.target);
+          } else {
+            entry.target.classList.remove('card-arrived');
           }
         });
       },
       {
-        threshold: 0.08,
-        rootMargin: '0px 0px -20px 0px'
+        threshold: 0.15, // Wait until 15% is visible for a smoother trigger
+        rootMargin: '0px 0px -50px 0px'
       }
     );
 
     cards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-      // Pre-mark arrived only if user already scrolled past above the viewport
-      if (rect.bottom < 0) {
-        card.classList.add('card-arrived');
-      } else {
-        card.classList.remove('card-arrived');
-        cardObserver.observe(card);
-      }
+      cardObserver.observe(card);
     });
 
     return () => cardObserver.disconnect();

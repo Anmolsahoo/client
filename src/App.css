@@ -17,7 +17,7 @@
 .scroll-reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -932,14 +932,14 @@
 .service-sliding-card.card-comes-from-left {
   opacity: 0;
   transform: translateX(-120px);
-  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Right Card: Enters from RIGHT side */
 .service-sliding-card.card-comes-from-right {
   opacity: 0;
   transform: translateX(120px);
-  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
 }
 
 /* Both Cards Scrolled Into View: Meet In Center */
